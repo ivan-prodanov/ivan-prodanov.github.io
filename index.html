@@ -7,7 +7,8 @@
     body {
       font-family: sans-serif;
       text-align: center;
-      margin: 2em;
+      margin: 0;
+      padding: 2em;
     }
 
     .price-box {
@@ -17,23 +18,30 @@
 
     .image-row {
       display: flex;
-      justify-content: center;
-      gap: 2em;
-      flex-wrap: wrap;
+      width: 100%;
+      height: 300px;
     }
 
-    .image-container {
-      width: 800px;
-      height: 800px;
+    .image-half {
+      flex: 1;
       overflow: hidden;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
 
-    .image-container img {
+    .image-half img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
+    }
+
+    @media (max-width: 700px) {
+      .image-row {
+        flex-direction: column;
+        height: auto;
+      }
+      .image-half {
+        height: 200px;
+      }
     }
   </style>
 </head>
@@ -46,10 +54,10 @@
   </div>
 
   <div class="image-row">
-    <div class="image-container">
+    <div class="image-half">
       <img src="https://cryptopotato.com/wp-content/uploads/2019/02/1vitalik-buterin-eth-inventor-cat-bag-min.jpg" alt="Vitalik Buterin" />
     </div>
-    <div class="image-container">
+    <div class="image-half">
       <img src="https://images.ctfassets.net/gjyjx7gst9lo/61EhiJXdLTH5hwLZlWogR5/6f19f1aad5fcd034e0b22174c7d91321/joe-lubin-square.jpg" alt="Joe Lubin" />
     </div>
   </div>
