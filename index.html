@@ -3,44 +3,82 @@
 <head>
   <title>Market Tracker</title>
   <meta charset="UTF-8" />
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin: 2em;
+    }
+
+    .price-box {
+      margin-bottom: 2em;
+      font-size: 1.2em;
+    }
+
+    .image-row {
+      display: flex;
+      justify-content: center;
+      gap: 2em;
+      flex-wrap: wrap;
+    }
+
+    .image-container {
+      width: 200px;
+      height: 200px;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
 </head>
 <body>
   <h1>Market Prices</h1>
 
-  <div>
+  <div class="price-box">
     <strong>ETH Price:</strong> <span id="eth-price">Loading...</span> USD
   </div>
-  <div>
+  <div class="price-box">
     <strong>SBET Stock Price:</strong> <span id="sbet-price">Loading...</span> USD
   </div>
-  
-<script>
-  async function fetchETH() {
-    try {
-      const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd");
-      const data = await res.json();
-      document.getElementById("eth-price").textContent = data.ethereum.usd.toFixed(2);
-    } catch (err) {
-      document.getElementById("eth-price").textContent = "Error";
+
+  <div class="image-row">
+    <div class="image-container">
+      <img src="https://cryptopotato.com/wp-content/uploads/2019/02/1vitalik-buterin-eth-inventor-cat-bag-min.jpg" alt="Vitalik Buterin" />
+    </div>
+    <div class="image-container">
+      <img src="https://images.ctfassets.net/gjyjx7gst9lo/61EhiJXdLTH5hwLZlWogR5/6f19f1aad5fcd034e0b22174c7d91321/joe-lubin-square.jpg" alt="Joe Lubin" />
+    </div>
+  </div>
+
+  <script>
+    async function fetchETH() {
+      try {
+        const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd");
+        const data = await res.json();
+        document.getElementById("eth-price").textContent = data.ethereum.usd.toFixed(2);
+      } catch (err) {
+        document.getElementById("eth-price").textContent = "Error";
+      }
     }
-  }
 
-  async function fetchSBET() {
-    try {
-      const res = await fetch("https://api.allorigins.win/get?url=" + encodeURIComponent("https://query1.finance.yahoo.com/v7/finance/quote?symbols=SBET"));
-      const data = await res.json();
-      const parsed = JSON.parse(data.contents);
-      const price = parsed.quoteResponse.result[0]?.regularMarketPrice;
-      document.getElementById("sbet-price").textContent = price ? price.toFixed(2) : "Unavailable";
-    } catch (err) {
-      document.getElementById("sbet-price").textContent = "Error";
+    async function fetchSBET() {
+      try {
+        const res = await fetch("https://financialmodelingprep.com/api/v3/quote/SBET?apikey=demo");
+        const data = await res.json();
+        document.getElementById("sbet-price").textContent = data[0].price.toFixed(2);
+      } catch (err) {
+        document.getElementById("sbet-price").textContent = "Error";
+      }
     }
-  }
 
-  fetchETH();
-  fetchSBET();
-  setInterval(() => { fetchETH(); fetchSBET(); }, 60000);
-</script>
-
+    fetchETH();
+    fetchSBET();
+  </script>
 </body>
 </html>
