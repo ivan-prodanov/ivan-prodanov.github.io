@@ -9,6 +9,7 @@
       text-align: center;
       margin: 0;
       padding: 2em;
+      box-sizing: border-box;
     }
 
     .price-box {
@@ -18,12 +19,13 @@
 
     .image-row {
       display: flex;
+      flex-wrap: wrap;
       width: 100%;
-      height: 300px;
     }
 
     .image-half {
-      flex: 1;
+      flex: 1 1 50%;
+      aspect-ratio: 16 / 9;
       overflow: hidden;
     }
 
@@ -35,12 +37,9 @@
     }
 
     @media (max-width: 700px) {
-      .image-row {
-        flex-direction: column;
-        height: auto;
-      }
       .image-half {
-        height: 200px;
+        flex-basis: 100%;
+        aspect-ratio: 3 / 2;
       }
     }
   </style>
