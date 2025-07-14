@@ -23,8 +23,8 @@
     }
 
     .image-container {
-      width: 200px;
-      height: 200px;
+      width: 800px;
+      height: 800px;
       overflow: hidden;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
@@ -55,8 +55,7 @@
       <img src="https://images.ctfassets.net/gjyjx7gst9lo/61EhiJXdLTH5hwLZlWogR5/6f19f1aad5fcd034e0b22174c7d91321/joe-lubin-square.jpg" alt="Joe Lubin" />
     </div>
   </div>
-
-  <script>
+<script>
     async function fetchETH() {
       try {
         const res = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd");
@@ -69,6 +68,7 @@
 
     async function fetchSBET() {
       try {
+        // Example using Financial Modeling Prep (FMP)
         const res = await fetch("https://financialmodelingprep.com/api/v3/quote/SBET?apikey=demo");
         const data = await res.json();
         document.getElementById("sbet-price").textContent = data[0].price.toFixed(2);
